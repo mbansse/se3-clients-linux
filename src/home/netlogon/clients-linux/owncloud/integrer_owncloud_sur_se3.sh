@@ -158,6 +158,8 @@ sudo -u "$htuser" php occ ldap:set-config "" ldapUserDisplayName "cn"
 sudo -u "$htuser" php occ ldap:set-config "" ldapUserFilterMode "0"
 sudo -u "$htuser" php occ ldap:set-config "" ldapUserFilter "(|(objectclass=person))"
 sudo -u "$htuser" php occ ldap:set-config "" ldapUserFilterObjectclass "person"
+sudo -u "$htuser" php occ ldap:set-config "" ldap_user_display_name_2 "uid"
+
 
 #sudo -u "$htuser" php occ ldap:set-config "" ldapAttributesForUserSearch "givenname"
 #La recherche des utilisateurs se fait par uid, c'est à dire par login :il suffit de taper les premières lettres du nom de famille au lieu du prenom
