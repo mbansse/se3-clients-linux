@@ -414,6 +414,30 @@ echo " Pour réaliser une maj d'OC, il faudra lancer le script /usr/share/se3/sb
 
 rm -f /etc/apt/sources.list.d/owncloud.list /etc/apt/sources.list.d/php5-libsmbclient.list
 
+echo " Etape 10 : Installation des applications bookmarks pour ajouter des favoris web, et de  l'application de messagerie/chat interne"
+
+#installation de l'application favoris
+cd /var/www/owncloud/apps/
+wget https://ovin.schiwon.me/index.php/s/3ROfUXOtwYIEY47/download
+mv download bookmarks.zip
+unzip bookmarks.zip
+chown -R www-data:www-data bookmarks
+rm  -f bookmarks.zip
+cd ..
+sudo -u www-data php occ app:enable bookmarks
+
+#installation de l'application messagerie/chat interne
+cd /var/www/owncloud/apps/
+wget https://github.com/simeonackermann/OC-User-Conversations/archive/master.zip
+unzip master.zip
+mv OC* conversations
+chown -R www-data:www-data conversations/
+cd ..
+sudo -u www-data php occ app:enable conversations
+cd apps
+rm -f master.zip
+
+
 echo " Fin de l'installation : vous devez pouvoir vous connecter à votre serveur owncloud à l'adresse http://IP_SE3/owncloud"
 echo " Le compte administrateur de votre serveur Owncloud est identique à celui du compte admin de l'interface web de votre se3"
 exit 0
